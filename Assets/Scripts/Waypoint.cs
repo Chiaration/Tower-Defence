@@ -6,7 +6,7 @@ using VSCodeEditor;
 [ExecuteInEditMode]
 [SelectionBase]
 
-public class EditorSnap : MonoBehaviour
+public class Waypoint : MonoBehaviour
 {
 
     [SerializeField] [Range(0, 10)] int gridSize = 1;

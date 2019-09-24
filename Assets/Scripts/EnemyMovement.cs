@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] List<GameObject> path;
+    [SerializeField] List<Waypoint> path;
 
     
     // Start is called before the first frame update
     void Start()
     {
-        foreach (GameObject Path in path)
+        printAllWaypoints();
+    }
+
+    private void printAllWaypoints()
+    {
+        foreach (Waypoint waypoint in path)
         {
-            print(Path.name);
+            print(waypoint.name);
         }
     }
 
