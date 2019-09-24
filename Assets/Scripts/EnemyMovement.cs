@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] List<Waypoint> path;
+    [SerializeField] List<Waypoints> path;
 
     
     // Start is called before the first frame update
@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator printAllWaypoints()
     {
         print("Starting Patrol");
-        foreach (Waypoint waypoint in path)
+        foreach (Waypoints waypoint in path)
         {
             print("Visiting Block: " + waypoint.name);
             var waypointTransform = waypoint.transform.position;
