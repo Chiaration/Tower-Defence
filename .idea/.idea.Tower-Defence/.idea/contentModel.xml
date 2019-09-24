@@ -6,6 +6,7 @@
     <e p="E:\Jun Hao Chia\Personal Development\Unity Course\Tower-Defence" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="EnemyMovement.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="EditorSnap.cs" t="Include" />
         </e>

@@ -29,6 +29,8 @@ public class EditorSnap : MonoBehaviour
         
         transform.position = new Vector3(gridSnap.x, 0f , gridSnap.z);
 
-        textMeshCoords.text = gridSnap.x / gridSize + "," + gridSnap.z / gridSize;
+        string coordsText = gridSnap.x / gridSize + "," + gridSnap.z / gridSize;
+        textMeshCoords.text = coordsText;
+        gameObject.name = coordsText;
     }
 }
