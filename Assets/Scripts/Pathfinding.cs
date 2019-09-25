@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
+    [SerializeField] Waypoints start;
+    [SerializeField] Waypoints end;
+    
+    
     Dictionary<Vector2Int, Waypoints> grid = new Dictionary<Vector2Int, Waypoints>();
     
     // Start is called before the first frame update
@@ -25,6 +29,18 @@ public class Pathfinding : MonoBehaviour
             else
             {
                 grid.Add(waypoints.GetGridSnap(), waypoints);
+                if (waypoints.GetGridSnap() == start.GetGridSnap()) 
+                {
+                    waypoints.SetTopColour(Color.green);
+                }
+                else if (waypoints.GetGridSnap() == end.GetGridSnap())
+                {
+                    waypoints.SetTopColour(Color.red);
+                }
+                else
+                {
+                    waypoints.SetTopColour(Color.magenta);
+                }
             }
         }
         print(grid.Count);
