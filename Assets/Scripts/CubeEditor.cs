@@ -34,14 +34,14 @@ public class CubeEditor : MonoBehaviour
 
     private void SnapToGrid()
     {
-        transform.position = new Vector3(waypoint.GetGridSnap().x, 0f, waypoint.GetGridSnap().y);
+        transform.position = new Vector3(waypoint.GetGridSnap().x * waypoint.GetGridSize(), 0f, waypoint.GetGridSnap().y * waypoint.GetGridSize());
     }
 
     private void UpdateLabel()
     {
         int gridSize = waypoint.GetGridSize();
         textMeshCoords = GetComponentInChildren<TextMesh>();
-        string coordsText = waypoint.GetGridSnap().x / gridSize + "," + waypoint.GetGridSnap().y / gridSize;
+        string coordsText = waypoint.GetGridSnap().x + "," + waypoint.GetGridSnap().y;
         textMeshCoords.text = coordsText;
         gameObject.name = coordsText;
     }
