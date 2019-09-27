@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http;
 using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
@@ -10,6 +11,8 @@ public class Pathfinding : MonoBehaviour
     
     
     Dictionary<Vector2Int, Waypoints> grid = new Dictionary<Vector2Int, Waypoints>();
+    Queue<Waypoints> queue = new Queue<Waypoints>();
+    private bool isRunning = true;
 
     private Vector2Int[] directions =
     {
@@ -24,6 +27,29 @@ public class Pathfinding : MonoBehaviour
     {
         LoadBlocks();
         ExploreNeighbours();
+        Pathfind();
+    }
+
+    private void Pathfind()
+    {
+        queue.Enqueue(start);
+
+        print(queue.Peek());
+
+        while (queue.Count > 0)
+        {
+            var searchCenter = queue.Dequeue();
+            HaltIfEndFound(searchCenter);
+        }
+    }
+
+    private void HaltIfEndFound(Waypoints searchCenter)
+    {
+        if (searchCenter == end)
+        {
+            isRunning = false;
+            print("Ending");
+        }
     }
 
     private void ExploreNeighbours()

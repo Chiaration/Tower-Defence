@@ -1413,8 +1413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c43f17fbe620d44389a8f17c19da2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: {fileID: 1753513408}
-  end: {fileID: 855208600}
+  start: {fileID: 2130764294}
+  end: {fileID: 2130764294}
 --- !u!4 &1610764859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6408942976240474574, guid: 504b7b244a9a3d049a759433177b2b58,
@@ -1822,6 +1822,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Capsule
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611307154728381635, guid: 3e85c6388f9c9aa42abe47e5e858c856,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5828175631979676644, guid: 3e85c6388f9c9aa42abe47e5e858c856,
         type: 3}
