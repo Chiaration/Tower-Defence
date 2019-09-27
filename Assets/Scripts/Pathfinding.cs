@@ -26,7 +26,6 @@ public class Pathfinding : MonoBehaviour
     void Start()
     {
         LoadBlocks();
-        ExploreNeighbours();
         Pathfind();
     }
 
@@ -36,10 +35,12 @@ public class Pathfinding : MonoBehaviour
 
         print(queue.Peek());
 
-        while (queue.Count > 0)
+        while (queue.Count > 0 && isRunning)
         {
             var searchCenter = queue.Dequeue();
+            searchCenter.isExplored = true;
             HaltIfEndFound(searchCenter);
+            ExploreNeighbours(searchCenter);
         }
     }
 
@@ -52,15 +53,23 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    private void ExploreNeighbours()
+    private void ExploreNeighbours(Waypoints from)
     {
+        if (!isRunning)
+        {
+            return; }
+        
         foreach (Vector2Int direction in directions)
         {
-            Vector2Int explorationCoords = start.GetGridSnap() + direction;
+            Vector2Int explorationCoords = from.GetGridSnap() + direction;
             print("Exploring " + explorationCoords);
             try
             {
-                grid[explorationCoords].SetTopColour(Color.blue);
+                if (!grid[explorationCoords].isExplored)
+                {
+                    grid[explorationCoords].SetTopColour(Color.blue);
+                    queue.Enqueue(grid[explorationCoords]);
+                }
             }
             catch (Exception e)
             {
