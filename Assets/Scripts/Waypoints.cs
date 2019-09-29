@@ -5,6 +5,7 @@ using UnityEngine;
 public class Waypoints : MonoBehaviour
 {
     public bool isExplored = false;
+    public Waypoints exploredFrom; 
     
     const int gridSize = 5;
 

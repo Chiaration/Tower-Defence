@@ -13,6 +13,8 @@ public class Pathfinding : MonoBehaviour
     Dictionary<Vector2Int, Waypoints> grid = new Dictionary<Vector2Int, Waypoints>();
     Queue<Waypoints> queue = new Queue<Waypoints>();
     private bool isRunning = true;
+    
+    Waypoints searchCenter;
 
     private Vector2Int[] directions =
     {
@@ -37,14 +39,14 @@ public class Pathfinding : MonoBehaviour
 
         while (queue.Count > 0 && isRunning)
         {
-            var searchCenter = queue.Dequeue();
+            searchCenter = queue.Dequeue();
             searchCenter.isExplored = true;
-            HaltIfEndFound(searchCenter);
-            ExploreNeighbours(searchCenter);
+            HaltIfEndFound();
+            ExploreNeighbours();
         }
     }
 
-    private void HaltIfEndFound(Waypoints searchCenter)
+    private void HaltIfEndFound( )
     {
         if (searchCenter == end)
         {
@@ -53,7 +55,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    private void ExploreNeighbours(Waypoints from)
+    private void ExploreNeighbours()
     {
         if (!isRunning)
         {
@@ -61,14 +63,15 @@ public class Pathfinding : MonoBehaviour
         
         foreach (Vector2Int direction in directions)
         {
-            Vector2Int explorationCoords = from.GetGridSnap() + direction;
+            Vector2Int explorationCoords = searchCenter.GetGridSnap() + direction;
             print("Exploring " + explorationCoords);
             try
             {
-                if (!grid[explorationCoords].isExplored)
+                if (!grid[explorationCoords].isExplored && !queue.Contains(grid[explorationCoords]))
                 {
                     grid[explorationCoords].SetTopColour(Color.blue);
                     queue.Enqueue(grid[explorationCoords]);
+                    grid[explorationCoords].exploredFrom = searchCenter;
                 }
             }
             catch (Exception e)
