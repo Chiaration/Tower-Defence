@@ -16,6 +16,8 @@ public class Pathfinding : MonoBehaviour
     
     Waypoints searchCenter;
 
+    public List<Waypoints> path;
+
     private Vector2Int[] directions =
     {
         Vector2Int.up,
