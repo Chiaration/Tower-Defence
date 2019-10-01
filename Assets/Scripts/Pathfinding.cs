@@ -16,7 +16,7 @@ public class Pathfinding : MonoBehaviour
     
     Waypoints searchCenter;
 
-    public List<Waypoints> path;
+    private List<Waypoints> path = new List<Waypoints>();
 
     private Vector2Int[] directions =
     {
@@ -25,15 +25,32 @@ public class Pathfinding : MonoBehaviour
         Vector2Int.down,
         Vector2Int.left
     };
-    
-    // Start is called before the first frame update
-    void Start()
+
+    public List<Waypoints> getPath()
     {
         LoadBlocks();
-        Pathfind();
+        BFS();
+        CreatePath();
+        return path;
     }
 
-    private void Pathfind()
+    private void CreatePath()
+    {
+        path.Add(end);
+        Waypoints previous = end.exploredFrom;
+
+        while (previous != start)
+        {
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+        
+        path.Add(start);
+
+        path.Reverse();
+    }
+
+    private void BFS()
     {
         queue.Enqueue(start);
 
@@ -71,7 +88,6 @@ public class Pathfinding : MonoBehaviour
             {
                 if (!grid[explorationCoords].isExplored && !queue.Contains(grid[explorationCoords]))
                 {
-                    grid[explorationCoords].SetTopColour(Color.blue);
                     queue.Enqueue(grid[explorationCoords]);
                     grid[explorationCoords].exploredFrom = searchCenter;
                 }
