@@ -28,9 +28,12 @@ public class Pathfinding : MonoBehaviour
 
     public List<Waypoints> getPath()
     {
-        LoadBlocks();
-        BFS();
-        CreatePath();
+        if (path.Count == 0)
+        {
+            LoadBlocks();
+            BFS();
+            CreatePath();
+        }
         return path;
     }
 
@@ -54,8 +57,6 @@ public class Pathfinding : MonoBehaviour
     {
         queue.Enqueue(start);
 
-        print(queue.Peek());
-
         while (queue.Count > 0 && isRunning)
         {
             searchCenter = queue.Dequeue();
@@ -70,7 +71,6 @@ public class Pathfinding : MonoBehaviour
         if (searchCenter == end)
         {
             isRunning = false;
-            print("Ending");
         }
     }
 
@@ -83,7 +83,6 @@ public class Pathfinding : MonoBehaviour
         foreach (Vector2Int direction in directions)
         {
             Vector2Int explorationCoords = searchCenter.GetGridSnap() + direction;
-            print("Exploring " + explorationCoords);
             try
             {
                 if (!grid[explorationCoords].isExplored && !queue.Contains(grid[explorationCoords]))
@@ -126,6 +125,5 @@ public class Pathfinding : MonoBehaviour
                 }
             }
         }
-        print(grid.Count);
     }
 }

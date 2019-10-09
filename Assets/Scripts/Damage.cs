@@ -22,7 +22,6 @@ public class Damage : MonoBehaviour
     void ProcessHit()
     {
         hitPoints = hitPoints - 1;
-        print("My hitpoints: " + hitPoints);
 
         if (hitPoints <= 0)
         {
