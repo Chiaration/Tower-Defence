@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
         {
             var waypointTransform = waypoint.transform.position;
             transform.position = new Vector3(waypointTransform.x, 2.5f, waypointTransform.z);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
     }
 
