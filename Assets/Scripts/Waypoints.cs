@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,6 +35,11 @@ public class Waypoints : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnMouseOver()
+    {
+        print("Mouse is over " + gameObject.name);
     }
 
     public void SetTopColour(Color color)
