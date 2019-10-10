@@ -6,7 +6,8 @@ using UnityEngine;
 public class Waypoints : MonoBehaviour
 {
     public bool isExplored = false;
-    public Waypoints exploredFrom; 
+    public Waypoints exploredFrom;
+    public bool isPlaceable = true;
     
     const int gridSize = 10;
 
@@ -39,7 +40,10 @@ public class Waypoints : MonoBehaviour
 
     void OnMouseOver()
     {
-        print("Mouse is over " + gameObject.name);
+        if (Input.GetMouseButtonDown(0) && isPlaceable == true)
+        {
+            print(gameObject.name);
+        }
     }
 
     public void SetTopColour(Color color)
