@@ -248,6 +248,8 @@ MonoBehaviour:
   isExplored: 0
   exploredFrom: {fileID: 0}
   isPlaceable: 1
+  towerPrefab: {fileID: 2318382623718788191, guid: 1047413bad376c543a99307c32591b02,
+    type: 3}
 --- !u!65 &1653396605471740805
 BoxCollider:
   m_ObjectHideFlags: 0
