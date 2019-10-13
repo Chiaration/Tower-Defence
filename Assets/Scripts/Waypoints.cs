@@ -11,9 +11,7 @@ public class Waypoints : MonoBehaviour
 
     const int gridSize = 10;
 
-    [SerializeField] Tower towerPrefab;
 
-    
 
     Vector2Int gridSnap;
     
@@ -46,8 +44,7 @@ public class Waypoints : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && isPlaceable == true)
         {
-            Instantiate(towerPrefab, transform.position, Quaternion.identity);
-            isPlaceable = false;
+            FindObjectOfType<TowerFactory>().AddTower(this);
         }
         else if (Input.GetMouseButtonDown(0))
         {
