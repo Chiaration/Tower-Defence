@@ -5,9 +5,11 @@ using UnityEngine;
 public class TowerFactory : MonoBehaviour
 {
     [SerializeField] Tower towerPrefab;
-    [SerializeField] int towerLimit = 5; 
-    
-    int currentTowers = 0;
+    [SerializeField] int towerLimit = 5;
+
+    Queue<Tower> towerQueue = new Queue<Tower>();
+
+    int currentTowers;
     
     // Start is called before the first frame update
     void Start()
@@ -18,20 +20,25 @@ public class TowerFactory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        int currentTowers = towerQueue.Count;
+        print(currentTowers);
     }
 
     public void AddTower(Waypoints baseWaypoint)
     {
-        if (currentTowers < towerLimit)
+        if (currentTowers <= towerLimit)
         {
-            Instantiate(towerPrefab, baseWaypoint.transform.position, Quaternion.identity);
+            var newTower = Instantiate(towerPrefab, baseWaypoint.transform.position, Quaternion.identity);
             baseWaypoint.isPlaceable = false;
             currentTowers = currentTowers + 1;
+            towerQueue.Enqueue(newTower);
         }
         else
         {
-            print(currentTowers);
+            var oldTower = towerQueue.Dequeue();
+            
+            
+            towerQueue.Enqueue(oldTower);
         }
     }
 }
