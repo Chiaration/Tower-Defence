@@ -8,9 +8,10 @@ public class Damage : MonoBehaviour
     [SerializeField] int hitPoints = 10;
     [SerializeField] ParticleSystem HitParticlePrefab;
     [SerializeField] private ParticleSystem DeathParticlePrefab;
-    
-    
-    
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,9 @@ public class Damage : MonoBehaviour
     {
         var deathParticle = Instantiate(DeathParticlePrefab, transform.position, Quaternion.identity);
         deathParticle.Play();
+        
+        float destoryDelay = deathParticle.main.duration;
+        Destroy(deathParticle.gameObject, destoryDelay);
         Destroy(gameObject);
     }
 }

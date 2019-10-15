@@ -67,6 +67,7 @@ MonoBehaviour:
   hitPoints: 10
   HitParticlePrefab: {fileID: 5375582987302042987}
   DeathParticlePrefab: {fileID: 3633538247128224530}
+  deathFXParent: {fileID: 4907987154143992}
 --- !u!114 &114078703179129330
 MonoBehaviour:
   m_ObjectHideFlags: 0
