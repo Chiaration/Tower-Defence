@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField] float movementSpeed = 0.5f;
+    [SerializeField] private ParticleSystem goalParticle;
+    
+    
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +23,20 @@ public class EnemyMovement : MonoBehaviour
         {
             var waypointTransform = waypoint.transform.position;
             transform.position = new Vector3(waypointTransform.x, 2.5f, waypointTransform.z);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(movementSpeed);
         }
+
+        SelfDestruct();
+    }
+
+    private void SelfDestruct()
+    {
+        var vfx = Instantiate(goalParticle, transform.position, Quaternion.identity);
+        vfx.Play();
+        
+        float destoryDelay = vfx.main.duration;
+        Destroy(vfx.gameObject, destoryDelay);
+        Destroy(gameObject);
     }
 
     // Update is called once per frame

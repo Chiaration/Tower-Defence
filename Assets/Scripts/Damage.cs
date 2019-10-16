@@ -9,7 +9,8 @@ public class Damage : MonoBehaviour
     [SerializeField] ParticleSystem HitParticlePrefab;
     [SerializeField] private ParticleSystem DeathParticlePrefab;
 
-
+    [SerializeField] Waypoints endWayPoint;
+    
 
 
     // Start is called before the first frame update
@@ -43,4 +44,6 @@ public class Damage : MonoBehaviour
         Destroy(deathParticle.gameObject, destoryDelay);
         Destroy(gameObject);
     }
+    
+    
 }
