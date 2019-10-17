@@ -10,6 +10,11 @@ public class Damage : MonoBehaviour
     [SerializeField] private ParticleSystem DeathParticlePrefab;
 
     [SerializeField] Waypoints endWayPoint;
+
+    [SerializeField] private AudioClip damageSound;
+    [SerializeField] private AudioClip deathSound;
+    
+    
     
 
 
@@ -26,6 +31,7 @@ public class Damage : MonoBehaviour
 
     void ProcessHit()
     {
+        GetComponent<AudioSource>().PlayOneShot(damageSound);
         hitPoints = hitPoints - 1;
         HitParticlePrefab.Play();
 
@@ -39,6 +45,7 @@ public class Damage : MonoBehaviour
     {
         var deathParticle = Instantiate(DeathParticlePrefab, transform.position, Quaternion.identity);
         deathParticle.Play();
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
         
         float destoryDelay = deathParticle.main.duration;
         Destroy(deathParticle.gameObject, destoryDelay);
